@@ -1,0 +1,44 @@
+
+nav {
+    
+    position:fixed; 
+    top:0px;
+    right:0px;
+    border-style: solid ;
+    background-color: rgb(0, 0, 0);
+    border-radius: 0 0 10px 10px;
+        z-index: 100;
+}
+
+body{
+    font-size: xx-large;
+    margin: 0;
+    background-image: url(bg.png);
+}
+html{
+ 
+    text-align: center;
+    font-family: sans-serif;
+
+}
+main{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+    
+
+
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+ 
+
+ 
+  
+        
+}
+
+@media screen and (max-width: 600px){
+ 
+
+}
