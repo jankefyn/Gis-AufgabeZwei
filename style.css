@@ -25,7 +25,23 @@ main{
     max-width: 800px;
     margin: 0 auto;
 }
-
+a:link { 
+	font-weight: bold; 
+	text-decoration: none; 
+    color: lightsteelblue;
+	}
+a:visited { 
+	font-weight: bold; 
+	text-decoration: underline; 
+	color: lightsteelblue;
+	}
+a:hover, a:focus,a:active { 
+	text-decoration: underline; 
+    color: lightsteelblue;
+}
+#hervorheben{
+    color: gold;
+}
     
 
 
