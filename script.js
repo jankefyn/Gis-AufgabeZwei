@@ -8,15 +8,15 @@ buttonOben.addEventListener("click", öffneOben);
 let buttonAll = document.getElementById("buttonAll");
 buttonAll.addEventListener("click", öffneAll);
 function öffneUnten() {
-    window.open("AuswahlUnten.html");
+    window.open("AuswahlUnten.html", "_blank");
 }
 function öffneMitte() {
-    window.open("AuswahlMitte.html");
+    window.open("AuswahlMitte.html", "_blank");
 }
 function öffneOben() {
-    window.open("AuswahlOben.html");
+    window.open("AuswahlOben.html", "_blank");
 }
 function öffneAll() {
-    window.open("Gesamtbild.html");
+    window.open("Gesamtbild.html", "_blank");
 }
 //# sourceMappingURL=script.js.map
