@@ -25,5 +25,13 @@ var p2_3;
         window.open("Gesamtbild.html", "_self");
     }
     console.log("hallo");
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlOben.html") {
+        let bilderDiv = document.getElementById("bilder");
+        for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
+            let meinbild = document.createElement("img");
+            meinbild.src = p2_3.arrayBilderOben[counter].link;
+            bilderDiv.appendChild(meinbild);
+        }
+    }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map

@@ -25,7 +25,7 @@ namespace p2_3 {
     console.log("hallo");
 
     export interface Bild {
-        link: String;
+        link: string;
         typ: number;
     }
     export interface Auswahl {
@@ -33,11 +33,14 @@ namespace p2_3 {
         mitte: Bild;
         unten: Bild;
     }
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlOben.html") {
+        let bilderDiv: HTMLElement = document.getElementById("bilder");
+
+        for (let counter: number = 0; counter < arrayBilderOben.length; counter++) {
+            let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.src = arrayBilderOben[counter].link;
+            bilderDiv.appendChild(meinbild);
+        
+    }
 }
-
-
-
-
-
-
-
+ }
