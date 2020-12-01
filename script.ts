@@ -8,16 +8,16 @@ buttonOben.addEventListener("click", öffneOben);
 let buttonAll: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonAll");
 buttonAll.addEventListener("click", öffneAll);
 function öffneUnten(): void {
-    window.open("AuswahlOben.html");
+    window.open("AuswahlUnten.html");
 }
 function öffneMitte(): void {
-    window.open("AuswahlOben.html");
+    window.open("AuswahlMitte.html");
 }
 function öffneOben(): void {
     window.open("AuswahlOben.html");
 }
 function öffneAll(): void {
-    window.open("AuswahlOben.html");
+    window.open("Gesamtbild.html");
 }
 
 
