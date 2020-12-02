@@ -38,6 +38,7 @@ namespace p2_3 {
 
         for (let counter: number = 0; counter < arrayBilderOben.length; counter++) {
             let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.addEventListener("click", function (): void { select(arrayBilderOben[counter]); });
             meinbild.src = arrayBilderOben[counter].link;
             bilderDiv.appendChild(meinbild);
         }
@@ -45,8 +46,9 @@ namespace p2_3 {
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
         let bilderDiv: HTMLElement = document.getElementById("bilder");
 
-        for (let counter: number = 0; counter < arrayBilderOben.length; counter++) {
+        for (let counter: number = 0; counter < arrayBilderUnten.length; counter++) {
             let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.addEventListener("click", function (): void { select(arrayBilderUnten[counter]); });
             meinbild.src = arrayBilderUnten[counter].link;
             bilderDiv.appendChild(meinbild);
         }
@@ -54,11 +56,27 @@ namespace p2_3 {
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
         let bilderDiv: HTMLElement = document.getElementById("bilder");
 
-        for (let counter: number = 0; counter < arrayBilderOben.length; counter++) {
+        for (let counter: number = 0; counter < arrayBilderMitte.length; counter++) {
             let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.addEventListener("click", function (): void {
+                select(arrayBilderMitte[counter]);
+            });
             meinbild.src = arrayBilderMitte[counter].link;
             bilderDiv.appendChild(meinbild);
         }
+    }
+    function select(bild: Bild): void {
+        if (bild.typ == keyTypOben) {
+            auswahl.oben = bild;
+        }
+        if (bild.typ == keyTypUnten) {
+            auswahl.unten = bild;
+        }
+        if (bild.typ == keyTypMitte){
+            auswahl.mitte = bild;
+           
+        }
+        console.log(auswahl);
     }
 
 

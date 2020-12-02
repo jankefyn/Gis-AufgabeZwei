@@ -22,5 +22,6 @@ var p2_3;
     p2_3.arrayBilderMitte.push(bild2Mitte);
     let bild3Mitte = { link: "Bilder/Bild3Mitte.jpg", typ: p2_3.keyTypMitte };
     p2_3.arrayBilderMitte.push(bild3Mitte);
+    p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=data.js.map

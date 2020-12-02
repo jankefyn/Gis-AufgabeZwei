@@ -29,25 +29,42 @@ var p2_3;
         let bilderDiv = document.getElementById("bilder");
         for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
             let meinbild = document.createElement("img");
+            meinbild.addEventListener("click", function () { select(p2_3.arrayBilderOben[counter]); });
             meinbild.src = p2_3.arrayBilderOben[counter].link;
             bilderDiv.appendChild(meinbild);
         }
     }
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
         let bilderDiv = document.getElementById("bilder");
-        for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
+        for (let counter = 0; counter < p2_3.arrayBilderUnten.length; counter++) {
             let meinbild = document.createElement("img");
+            meinbild.addEventListener("click", function () { select(p2_3.arrayBilderUnten[counter]); });
             meinbild.src = p2_3.arrayBilderUnten[counter].link;
             bilderDiv.appendChild(meinbild);
         }
     }
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
         let bilderDiv = document.getElementById("bilder");
-        for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
+        for (let counter = 0; counter < p2_3.arrayBilderMitte.length; counter++) {
             let meinbild = document.createElement("img");
+            meinbild.addEventListener("click", function () {
+                select(p2_3.arrayBilderMitte[counter]);
+            });
             meinbild.src = p2_3.arrayBilderMitte[counter].link;
             bilderDiv.appendChild(meinbild);
         }
+    }
+    function select(bild) {
+        if (bild.typ == p2_3.keyTypOben) {
+            p2_3.auswahl.oben = bild;
+        }
+        if (bild.typ == p2_3.keyTypUnten) {
+            p2_3.auswahl.unten = bild;
+        }
+        if (bild.typ == p2_3.keyTypMitte) {
+            p2_3.auswahl.mitte = bild;
+        }
+        console.log(p2_3.auswahl);
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map
