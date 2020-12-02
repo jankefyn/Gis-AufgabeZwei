@@ -1,7 +1,9 @@
 namespace p2_3 {
-    export let keyTypOben: number = 0;
-    export let keyTypUnten: number = 1;
-    export let keyTypMitte: number = 2;
+    window.addEventListener("load", finishedloading);
+    function finishedloading(): void {
+        //ausgabe=gespeichertes  
+        console.log("laden");
+    }
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
     let buttonMitte: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonMitte");
@@ -72,12 +74,14 @@ namespace p2_3 {
         if (bild.typ == keyTypUnten) {
             auswahl.unten = bild;
         }
-        if (bild.typ == keyTypMitte){
+        if (bild.typ == keyTypMitte) {
             auswahl.mitte = bild;
-           
         }
         console.log(auswahl);
+        let auswahlJSON: string = JSON.stringify(auswahl); 
     }
+
+
 
 
 

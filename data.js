@@ -1,6 +1,9 @@
 "use strict";
 var p2_3;
 (function (p2_3) {
+    p2_3.keyTypOben = 0;
+    p2_3.keyTypUnten = 1;
+    p2_3.keyTypMitte = 2;
     p2_3.arrayBilderOben = [];
     let bild1Oben = { link: "Bilder/bild1Oben.jpg", typ: p2_3.keyTypOben };
     p2_3.arrayBilderOben.push(bild1Oben);
@@ -23,5 +26,8 @@ var p2_3;
     let bild3Mitte = { link: "Bilder/Bild3Mitte.jpg", typ: p2_3.keyTypMitte };
     p2_3.arrayBilderMitte.push(bild3Mitte);
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
+    let bildObenJson = JSON.stringify(p2_3.arrayBilderOben);
+    let bildMitte = JSON.stringify(p2_3.arrayBilderMitte);
+    let bildUnten = JSON.stringify(p2_3.arrayBilderUnten);
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=data.js.map

@@ -1,4 +1,7 @@
 namespace p2_3 {
+    export let keyTypOben: number = 0;
+    export let keyTypUnten: number = 1;
+    export let keyTypMitte: number = 2;
     export let arrayBilderOben: Bild[] = [];
     let bild1Oben: Bild = { link: "Bilder/bild1Oben.jpg", typ: keyTypOben };
     arrayBilderOben.push(bild1Oben);
@@ -22,4 +25,7 @@ namespace p2_3 {
     arrayBilderMitte.push(bild3Mitte);
 
     export let auswahl: Auswahl = { oben: undefined, mitte: undefined, unten: undefined };
+    let bildObenJson: string = JSON.stringify(arrayBilderOben) ;
+    let bildMitte: string = JSON.stringify(arrayBilderMitte);
+    let bildUnten: string = JSON.stringify(arrayBilderUnten);
 }

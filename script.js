@@ -1,9 +1,11 @@
 "use strict";
 var p2_3;
 (function (p2_3) {
-    p2_3.keyTypOben = 0;
-    p2_3.keyTypUnten = 1;
-    p2_3.keyTypMitte = 2;
+    window.addEventListener("load", finishedloading);
+    function finishedloading() {
+        //ausgabe=gespeichertes  
+        console.log("laden");
+    }
     let buttonUnten = document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
     let buttonMitte = document.getElementById("buttonMitte");
@@ -65,6 +67,7 @@ var p2_3;
             p2_3.auswahl.mitte = bild;
         }
         console.log(p2_3.auswahl);
+        let auswahlJSON = JSON.stringify(p2_3.auswahl);
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map
