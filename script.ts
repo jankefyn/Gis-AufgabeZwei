@@ -40,7 +40,26 @@ namespace p2_3 {
             let meinbild: HTMLImageElement = document.createElement("img");
             meinbild.src = arrayBilderOben[counter].link;
             bilderDiv.appendChild(meinbild);
-        
+        }
+    }
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
+        let bilderDiv: HTMLElement = document.getElementById("bilder");
+
+        for (let counter: number = 0; counter < arrayBilderMitte.length; counter++) {
+            let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.src = arrayBilderMitte[counter].link;
+            bilderDiv.appendChild(meinbild);
+        }
+    }
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
+        let bilderDiv: HTMLElement = document.getElementById("bilder");
+
+        for (let counter: number = 0; counter < arrayBilderUnten.length; counter++) {
+            let meinbild: HTMLImageElement = document.createElement("img");
+            meinbild.src = arrayBilderUnten[counter].link;
+            bilderDiv.appendChild(meinbild);
+        }
+
+
     }
 }
- }
