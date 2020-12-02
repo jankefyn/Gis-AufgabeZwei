@@ -16,8 +16,19 @@ main{
     margin: 0 auto;
 }
 #bilder{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 40px;
+    
+        
+   
+    }
+    
+    
+    
   
-}
+
 
     
 
