@@ -15,9 +15,9 @@ namespace p2_3 {
     arrayBilderUnten.push(bild3Unten);
     export let arrayBilderMitte: Bild[] = [];
     let bild1Mitte: Bild = { link: "Bilder/Bild1Mitte.jpg", typ: keyTypMitte};
-    arrayBilderUnten.push(bild1Mitte);
+    arrayBilderMitte.push(bild1Mitte);
     let bild2Mitte: Bild = { link: "Bilder/Bild2Mitte.jpg", typ: keyTypMitte};
-    arrayBilderUnten.push(bild2Mitte);
-    let bild3Mitte: Bild = { link: "Bilder/BildMitte.jpg", typ: keyTypMitte};
-    arrayBilderUnten.push(bild3Mitte);
+    arrayBilderMitte.push(bild2Mitte);
+    let bild3Mitte: Bild = { link: "Bilder/Bild3Mitte.jpg", typ: keyTypMitte};
+    arrayBilderMitte.push(bild3Mitte);
 }

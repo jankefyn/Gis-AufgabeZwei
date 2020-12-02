@@ -17,10 +17,10 @@ var p2_3;
     p2_3.arrayBilderUnten.push(bild3Unten);
     p2_3.arrayBilderMitte = [];
     let bild1Mitte = { link: "Bilder/Bild1Mitte.jpg", typ: p2_3.keyTypMitte };
-    p2_3.arrayBilderUnten.push(bild1Mitte);
+    p2_3.arrayBilderMitte.push(bild1Mitte);
     let bild2Mitte = { link: "Bilder/Bild2Mitte.jpg", typ: p2_3.keyTypMitte };
-    p2_3.arrayBilderUnten.push(bild2Mitte);
-    let bild3Mitte = { link: "Bilder/BildMitte.jpg", typ: p2_3.keyTypMitte };
-    p2_3.arrayBilderUnten.push(bild3Mitte);
+    p2_3.arrayBilderMitte.push(bild2Mitte);
+    let bild3Mitte = { link: "Bilder/Bild3Mitte.jpg", typ: p2_3.keyTypMitte };
+    p2_3.arrayBilderMitte.push(bild3Mitte);
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=data.js.map

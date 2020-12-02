@@ -33,19 +33,19 @@ var p2_3;
             bilderDiv.appendChild(meinbild);
         }
     }
-    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
         let bilderDiv = document.getElementById("bilder");
-        for (let counter = 0; counter < p2_3.arrayBilderMitte.length; counter++) {
+        for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
             let meinbild = document.createElement("img");
-            meinbild.src = p2_3.arrayBilderMitte[counter].link;
+            meinbild.src = p2_3.arrayBilderUnten[counter].link;
             bilderDiv.appendChild(meinbild);
         }
     }
-    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
         let bilderDiv = document.getElementById("bilder");
-        for (let counter = 0; counter < p2_3.arrayBilderUnten.length; counter++) {
+        for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
             let meinbild = document.createElement("img");
-            meinbild.src = p2_3.arrayBilderUnten[counter].link;
+            meinbild.src = p2_3.arrayBilderMitte[counter].link;
             bilderDiv.appendChild(meinbild);
         }
     }

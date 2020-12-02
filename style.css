@@ -3,7 +3,7 @@
 body{
     font-size: xx-large;
     margin: 0;
-    background-image: url(bg.png);
+   
 }
 html{
  
@@ -15,36 +15,10 @@ main{
     max-width: 800px;
     margin: 0 auto;
 }
-a:link { 
-	font-weight: bold; 
-	text-decoration: none; 
-    color: lightsteelblue;
-	}
-a:visited { 
-	font-weight: bold; 
-	text-decoration: underline; 
-	color: lightsteelblue;
-	}
-a:hover, a:focus,a:active { 
-	text-decoration: underline; 
-    color: lightsteelblue;
+#bilder{
+  
 }
-#hervorheben{
-    color: gold;
-}
+
     
 
 
-
-@media screen and (min-width: 601px) and (max-width: 1024px){
- 
-
- 
-  
-        
-}
-
-@media screen and (max-width: 600px){
- 
-
-}
