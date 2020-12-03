@@ -25,7 +25,8 @@ namespace p2_3 {
     arrayBilderMitte.push(bild3Mitte);
 
     export let auswahl: Auswahl = { oben: undefined, mitte: undefined, unten: undefined };
-    let bildObenJson: string = JSON.stringify(arrayBilderOben) ;
-    let bildMitte: string = JSON.stringify(arrayBilderMitte);
-    let bildUnten: string = JSON.stringify(arrayBilderUnten);
+
+    function bilderzuJSON(): string {
+        let arrayAlleBilder: JedesBild = { arrayBilderOben, arrayBilderMitte, arrayBilderUnten };
+    }
 }

@@ -26,8 +26,8 @@ var p2_3;
     let bild3Mitte = { link: "Bilder/Bild3Mitte.jpg", typ: p2_3.keyTypMitte };
     p2_3.arrayBilderMitte.push(bild3Mitte);
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
-    let bildObenJson = JSON.stringify(p2_3.arrayBilderOben);
-    let bildMitte = JSON.stringify(p2_3.arrayBilderMitte);
-    let bildUnten = JSON.stringify(p2_3.arrayBilderUnten);
+    function bilderzuJSON() {
+        let arrayAlleBilder = { arrayBilderOben: p2_3.arrayBilderOben, arrayBilderMitte: p2_3.arrayBilderMitte, arrayBilderUnten: p2_3.arrayBilderUnten };
+    }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=data.js.map

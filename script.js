@@ -3,8 +3,8 @@ var p2_3;
 (function (p2_3) {
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        //ausgabe=gespeichertes  
-        console.log("laden");
+        let laden = JSON.parse(localStorage.getItem("storageAuswahl"));
+        console.log(laden);
     }
     let buttonUnten = document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
@@ -26,7 +26,6 @@ var p2_3;
     function openAll() {
         window.open("Gesamtbild.html", "_self");
     }
-    console.log("hallo");
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlOben.html") {
         let bilderDiv = document.getElementById("bilder");
         for (let counter = 0; counter < p2_3.arrayBilderOben.length; counter++) {
@@ -56,18 +55,18 @@ var p2_3;
             bilderDiv.appendChild(meinbild);
         }
     }
-    function select(bild) {
-        if (bild.typ == p2_3.keyTypOben) {
-            p2_3.auswahl.oben = bild;
+    function select(_bild) {
+        if (_bild.typ == p2_3.keyTypOben) {
+            p2_3.auswahl.oben = _bild;
         }
-        if (bild.typ == p2_3.keyTypUnten) {
-            p2_3.auswahl.unten = bild;
+        if (_bild.typ == p2_3.keyTypUnten) {
+            p2_3.auswahl.unten = _bild;
         }
-        if (bild.typ == p2_3.keyTypMitte) {
-            p2_3.auswahl.mitte = bild;
+        if (_bild.typ == p2_3.keyTypMitte) {
+            p2_3.auswahl.mitte = _bild;
         }
-        console.log(p2_3.auswahl);
         let auswahlJSON = JSON.stringify(p2_3.auswahl);
+        localStorage.setItem("storageAuswahl", auswahlJSON);
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map

@@ -1,8 +1,9 @@
 namespace p2_3 {
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-        //ausgabe=gespeichertes  
-        console.log("laden");
+        let laden: Auswahl = JSON.parse(localStorage.getItem("storageAuswahl"));
+
+        console.log(laden);
     }
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
@@ -24,7 +25,11 @@ namespace p2_3 {
     function openAll(): void {
         window.open("Gesamtbild.html", "_self");
     }
-    console.log("hallo");
+    export interface JedesBild {
+        oben: Bild[];
+        mitte: Bild[];
+        unten: Bild[];
+    }
 
     export interface Bild {
         link: string;
@@ -67,18 +72,19 @@ namespace p2_3 {
             bilderDiv.appendChild(meinbild);
         }
     }
-    function select(bild: Bild): void {
-        if (bild.typ == keyTypOben) {
-            auswahl.oben = bild;
+    function select(_bild: Bild): void {
+        if (_bild.typ == keyTypOben) {
+            auswahl.oben = _bild;
         }
-        if (bild.typ == keyTypUnten) {
-            auswahl.unten = bild;
+        if (_bild.typ == keyTypUnten) {
+            auswahl.unten = _bild;
         }
-        if (bild.typ == keyTypMitte) {
-            auswahl.mitte = bild;
+        if (_bild.typ == keyTypMitte) {
+            auswahl.mitte = _bild;
         }
-        console.log(auswahl);
-        let auswahlJSON: string = JSON.stringify(auswahl); 
+
+        let auswahlJSON: string = JSON.stringify(auswahl);
+        localStorage.setItem("storageAuswahl", auswahlJSON);
     }
 
 
