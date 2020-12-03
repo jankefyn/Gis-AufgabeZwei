@@ -1,15 +1,12 @@
 
-
 body{
     font-size: xx-large;
     margin: 0;
    
 }
 html{
- 
     text-align: center;
     font-family: sans-serif;
-
 }
 main{
     max-width: 800px;
@@ -24,14 +21,15 @@ main{
  #bilder img {
         max-width: 200px;
     }
-    #gespeicherteBilder{
+#gespeicherteBilder{
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        flex-direction: column;
         flex-wrap: wrap;
         margin: 40px;
     }
-    #gespeicherteBilder img{
-        max-width: 200px;
+#gespeicherteBilder img{
+        max-width:  200px;
     }
 
     
