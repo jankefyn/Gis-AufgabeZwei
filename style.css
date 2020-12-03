@@ -24,6 +24,15 @@ main{
  #bilder img {
         max-width: 200px;
     }
+    #gespeicherteBilder{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 40px;
+    }
+    #gespeicherteBilder img{
+        max-width: 200px;
+    }
 
     
     

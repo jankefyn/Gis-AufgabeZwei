@@ -26,8 +26,29 @@ var p2_3;
     let bild3Mitte = { link: "Bilder/Bild3Mitte.jpg", typ: p2_3.keyTypMitte };
     p2_3.arrayBilderMitte.push(bild3Mitte);
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
-    function bilderzuJSON() {
-        let arrayAlleBilder = { arrayBilderOben: p2_3.arrayBilderOben, arrayBilderMitte: p2_3.arrayBilderMitte, arrayBilderUnten: p2_3.arrayBilderUnten };
+    bilderAusJSON(bilderZuJSON());
+    function bilderZuJSON() {
+        let arrayAlleBilder = { oben: p2_3.arrayBilderOben, mitte: p2_3.arrayBilderMitte, unten: p2_3.arrayBilderUnten };
+        let jsonAlleBilder = JSON.stringify(arrayAlleBilder);
+        console.log(jsonAlleBilder);
+        return jsonAlleBilder;
+    }
+    function bilderAusJSON(jsonStr) {
+        p2_3.arrayBilderOben = [];
+        p2_3.arrayBilderMitte = [];
+        p2_3.arrayBilderUnten = [];
+        let json = JSON.parse(jsonStr);
+        Object.keys(json).forEach(key => {
+            if (key == "oben") {
+                p2_3.arrayBilderOben = json[key];
+            }
+            else if (key == "mitte") {
+                p2_3.arrayBilderMitte = json[key];
+            }
+            else if (key == "unten") {
+                p2_3.arrayBilderUnten = json[key];
+            }
+        });
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=data.js.map

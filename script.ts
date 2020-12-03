@@ -1,10 +1,24 @@
 namespace p2_3 {
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-        let laden: Auswahl = JSON.parse(localStorage.getItem("storageAuswahl"));
-
-        console.log(laden);
+        let ladeOben: Auswahl = JSON.parse(localStorage.getItem("" + keyTypOben));
+        let ladeMitte: Auswahl = JSON.parse(localStorage.getItem("" + keyTypMitte));
+        let ladeUnten: Auswahl = JSON.parse(localStorage.getItem("" + keyTypUnten));
+        console.log(ladeOben);
+        console.log(ladeMitte);
+        console.log(ladeUnten);
+        let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
+        let vorschauOben: HTMLImageElement = document.createElement("img");
+        vorschauOben.src = ladeOben.oben.link;
+        let vorschauMitte: HTMLImageElement = document.createElement("img");
+        vorschauMitte.src = ladeMitte.mitte.link;
+        let vorschauUnten: HTMLImageElement = document.createElement("img");
+        vorschauUnten.src = ladeUnten.unten.link;
+        gespeicherteBilderDiv.appendChild(vorschauOben);
+        gespeicherteBilderDiv.appendChild(vorschauMitte);
+        gespeicherteBilderDiv.appendChild(vorschauUnten); 
     }
+
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
     let buttonMitte: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonMitte");
@@ -25,6 +39,8 @@ namespace p2_3 {
     function openAll(): void {
         window.open("Gesamtbild.html", "_self");
     }
+
+  
     export interface JedesBild {
         oben: Bild[];
         mitte: Bild[];
@@ -49,6 +65,7 @@ namespace p2_3 {
             meinbild.src = arrayBilderOben[counter].link;
             bilderDiv.appendChild(meinbild);
         }
+
     }
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlUnten.html") {
         let bilderDiv: HTMLElement = document.getElementById("bilder");
@@ -59,6 +76,7 @@ namespace p2_3 {
             meinbild.src = arrayBilderUnten[counter].link;
             bilderDiv.appendChild(meinbild);
         }
+
     }
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "AuswahlMitte.html") {
         let bilderDiv: HTMLElement = document.getElementById("bilder");
@@ -71,6 +89,7 @@ namespace p2_3 {
             meinbild.src = arrayBilderMitte[counter].link;
             bilderDiv.appendChild(meinbild);
         }
+
     }
     function select(_bild: Bild): void {
         if (_bild.typ == keyTypOben) {
@@ -82,9 +101,9 @@ namespace p2_3 {
         if (_bild.typ == keyTypMitte) {
             auswahl.mitte = _bild;
         }
+        let auswahlJSONOben: string = JSON.stringify(auswahl);
+        localStorage.setItem("" + _bild.typ, auswahlJSONOben);
 
-        let auswahlJSON: string = JSON.stringify(auswahl);
-        localStorage.setItem("storageAuswahl", auswahlJSON);
     }
 
 

@@ -3,8 +3,22 @@ var p2_3;
 (function (p2_3) {
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        let laden = JSON.parse(localStorage.getItem("storageAuswahl"));
-        console.log(laden);
+        let ladeOben = JSON.parse(localStorage.getItem("" + p2_3.keyTypOben));
+        let ladeMitte = JSON.parse(localStorage.getItem("" + p2_3.keyTypMitte));
+        let ladeUnten = JSON.parse(localStorage.getItem("" + p2_3.keyTypUnten));
+        console.log(ladeOben);
+        console.log(ladeMitte);
+        console.log(ladeUnten);
+        let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
+        let vorschauOben = document.createElement("img");
+        vorschauOben.src = ladeOben.oben.link;
+        let vorschauMitte = document.createElement("img");
+        vorschauMitte.src = ladeMitte.mitte.link;
+        let vorschauUnten = document.createElement("img");
+        vorschauUnten.src = ladeUnten.unten.link;
+        gespeicherteBilderDiv.appendChild(vorschauOben);
+        gespeicherteBilderDiv.appendChild(vorschauMitte);
+        gespeicherteBilderDiv.appendChild(vorschauUnten);
     }
     let buttonUnten = document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
@@ -65,8 +79,8 @@ var p2_3;
         if (_bild.typ == p2_3.keyTypMitte) {
             p2_3.auswahl.mitte = _bild;
         }
-        let auswahlJSON = JSON.stringify(p2_3.auswahl);
-        localStorage.setItem("storageAuswahl", auswahlJSON);
+        let auswahlJSONOben = JSON.stringify(p2_3.auswahl);
+        localStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map
