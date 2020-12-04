@@ -1,43 +1,43 @@
 {
     "oben": [
         {
-            "link": "Bilder/bild1Oben.jpg",
+            "link": "bild1Oben.jpg",
             "typ": 0
         },
         {
-            "link": "Bilder/bild2Oben.jpg",
+            "link": "bild2Oben.jpg",
             "typ": 0
         },
         {
-            "link": "Bilder/bild3Oben.jpg",
+            "link": "bild3Oben.jpg",
             "typ": 0
         }
     ],
     "mitte": [
         {
-            "link": "Bilder/Bild1Mitte.jpg",
+            "link": "Bild1Mitte.jpg",
             "typ": 2
         },
         {
-            "link": "Bilder/Bild2Mitte.jpg",
+            "link": "Bild2Mitte.jpg",
             "typ": 2
         },
         {
-            "link": "Bilder/Bild3Mitte.jpg",
+            "link": "Bild3Mitte.jpg",
             "typ": 2
         }
     ],
     "unten": [
         {
-            "link": "Bilder/Bild1Unten.jpg",
+            "link": "Bild1Unten.jpg",
             "typ": 1
         },
         {
-            "link": "Bilder/Bild2Unten.jpg",
+            "link": "Bild2Unten.jpg",
             "typ": 1
         },
         {
-            "link": "Bilder/Bild3Unten.jpg",
+            "link": "Bild3Unten.jpg",
             "typ": 1
         }
     ]
