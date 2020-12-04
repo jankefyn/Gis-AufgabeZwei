@@ -20,7 +20,7 @@ namespace p2_3 {
     interface Serverantwort {
         message: string;
         error: string;
-        
+
     }
 
     window.addEventListener("load", finishedloading);
@@ -120,14 +120,19 @@ namespace p2_3 {
         url = url + "?" + query.toString();
         let serverantwort: Response = await fetch(url);
         let rückmeldung: Serverantwort = await serverantwort.json();
-        
+
         if (rückmeldung.error != undefined) {
             console.log(rückmeldung.error);
+            let messagediv: HTMLElement = document.getElementById("messageerror");
+            messagediv.appendChild(document.createTextNode("" + rückmeldung.error));
         }
         else if (rückmeldung.message != undefined) {
             console.log(rückmeldung.message);
+            let messagediv: HTMLElement = document.getElementById("message");
+            messagediv.appendChild(document.createTextNode("" + rückmeldung.message));
         }
 
+     
     }
 
 }

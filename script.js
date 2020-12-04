@@ -96,9 +96,13 @@ var p2_3;
         let rückmeldung = await serverantwort.json();
         if (rückmeldung.error != undefined) {
             console.log(rückmeldung.error);
+            let messagediv = document.getElementById("messageerror");
+            messagediv.appendChild(document.createTextNode("" + rückmeldung.error));
         }
         else if (rückmeldung.message != undefined) {
             console.log(rückmeldung.message);
+            let messagediv = document.getElementById("message");
+            messagediv.appendChild(document.createTextNode("" + rückmeldung.message));
         }
     }
 })(p2_3 || (p2_3 = {}));

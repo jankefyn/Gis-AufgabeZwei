@@ -32,11 +32,21 @@ main{
         max-width:  200px;
     }
 
+#message {
+text-align: left;
+color:green;
+font-size: small;
+}
+#messageerror{
+text-align: left;
+color:red;
+font-size: small;
+}
+
     
     
   
 
 
     
-
 
