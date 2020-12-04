@@ -17,6 +17,11 @@ namespace p2_3 {
         mitte: Bild;
         unten: Bild;
     }
+    interface Serverantwort {
+        message: string;
+        error: string;
+        
+    }
 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
@@ -107,14 +112,22 @@ namespace p2_3 {
         let auswahlJSONOben: string = JSON.stringify(auswahl);
         localStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
- 
-    servercheck("gis - communication.herokuapp.com");
-    async function servercheck(_url: string): Promise<void> {
-        let query: URLSearchParams = new URLSearchParams(<any>localStorage);
 
-        _url = _url + "?" + query.toString();
-        await fetch(_url);
-        console.log(_url);
+    servercheck();
+    async function servercheck(): Promise<void> {
+        let query: URLSearchParams = new URLSearchParams(<any>localStorage);
+        let url: string = "https://gis-communication.herokuapp.com";
+        url = url + "?" + query.toString();
+        let serverantwort: Response = await fetch(url);
+        let rückmeldung: Serverantwort = await serverantwort.json();
+        
+        if (rückmeldung.error != undefined) {
+            console.log(rückmeldung.error);
+        }
+        else if (rückmeldung.message != undefined) {
+            console.log(rückmeldung.message);
+        }
+
     }
 
 }

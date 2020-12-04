@@ -87,12 +87,19 @@ var p2_3;
         let auswahlJSONOben = JSON.stringify(p2_3.auswahl);
         localStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
-    servercheck("gis - communication.herokuapp.com");
-    async function servercheck(_url) {
+    servercheck();
+    async function servercheck() {
         let query = new URLSearchParams(localStorage);
-        _url = _url + "?" + query.toString();
-        await fetch(_url);
-        console.log(_url);
+        let url = "https://gis-communication.herokuapp.com";
+        url = url + "?" + query.toString();
+        let serverantwort = await fetch(url);
+        let rückmeldung = await serverantwort.json();
+        if (rückmeldung.error != undefined) {
+            console.log(rückmeldung.error);
+        }
+        else if (rückmeldung.message != undefined) {
+            console.log(rückmeldung.message);
+        }
     }
 })(p2_3 || (p2_3 = {}));
 //# sourceMappingURL=script.js.map
