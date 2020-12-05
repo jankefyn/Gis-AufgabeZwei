@@ -25,9 +25,11 @@ namespace p2_3 {
 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-        let ladeOben: Auswahl = JSON.parse(localStorage.getItem("" + keyTypOben));
-        let ladeMitte: Auswahl = JSON.parse(localStorage.getItem("" + keyTypMitte));
-        let ladeUnten: Auswahl = JSON.parse(localStorage.getItem("" + keyTypUnten));
+        
+        
+        let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
+        let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
+        let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
         let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
         let vorschauOben: HTMLImageElement = document.createElement("img");
         vorschauOben.src = ladeOben.oben.link;
@@ -60,6 +62,11 @@ namespace p2_3 {
     function openAll(): void {
         window.open("Gesamtbild.html", "_self");
     }
+  /*   let clear: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clear");
+    clear.addEventListener("click", clearAuswahl);
+    function clearAuswahl(): void {
+        localStorage.clear();
+    } */
 
 
     ladeBilderAusJSON("data.json");
@@ -110,12 +117,12 @@ namespace p2_3 {
             auswahl.mitte = _bild;
         }
         let auswahlJSONOben: string = JSON.stringify(auswahl);
-        localStorage.setItem("" + _bild.typ, auswahlJSONOben);
+        sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
 
     servercheck();
     async function servercheck(): Promise<void> {
-        let query: URLSearchParams = new URLSearchParams(<any>localStorage);
+        let query: URLSearchParams = new URLSearchParams(<any>sessionStorage);
         let url: string = "https://gis-communication.herokuapp.com";
         url = url + "?" + query.toString();
         let serverantwort: Response = await fetch(url);
@@ -131,8 +138,5 @@ namespace p2_3 {
             let messagediv: HTMLElement = document.getElementById("message");
             messagediv.appendChild(document.createTextNode("" + rückmeldung.message));
         }
-
-     
     }
-
 }
