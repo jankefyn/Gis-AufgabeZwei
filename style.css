@@ -2,24 +2,24 @@
 body{
     font-size: xx-large;
     margin: 0;
-   
-}
+        background-image: url(bg.png);
+    }
+
 html{
     text-align: center;
     font-family: sans-serif;
 }
-main{
-    max-width: 800px;
-    margin: 0 auto;
-}
+
 #bilder{
         display: flex;
-        justify-content: space-around;
+        justify-content:space-around;
+        flex-direction: row;
         flex-wrap: wrap;
         margin: 40px;
     }
  #bilder img {
-        max-width: 200px;
+        width: 300px;
+        height: auto;
     }
 #gespeicherteBilder{
         display: flex;
@@ -29,6 +29,7 @@ main{
         margin: 40px;
     }
 #gespeicherteBilder img{
+    
         max-width:  200px;
     }
 

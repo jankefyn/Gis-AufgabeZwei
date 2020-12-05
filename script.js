@@ -7,9 +7,9 @@ var p2_3;
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        let ladeOben = JSON.parse(localStorage.getItem("" + p2_3.keyTypOben));
-        let ladeMitte = JSON.parse(localStorage.getItem("" + p2_3.keyTypMitte));
-        let ladeUnten = JSON.parse(localStorage.getItem("" + p2_3.keyTypUnten));
+        let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
+        let ladeMitte = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypMitte));
+        let ladeUnten = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypUnten));
         let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
         let vorschauOben = document.createElement("img");
         vorschauOben.src = ladeOben.oben.link;
@@ -85,11 +85,11 @@ var p2_3;
             p2_3.auswahl.mitte = _bild;
         }
         let auswahlJSONOben = JSON.stringify(p2_3.auswahl);
-        localStorage.setItem("" + _bild.typ, auswahlJSONOben);
+        sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
     servercheck();
     async function servercheck() {
-        let query = new URLSearchParams(localStorage);
+        let query = new URLSearchParams(sessionStorage);
         let url = "https://gis-communication.herokuapp.com";
         url = url + "?" + query.toString();
         let serverantwort = await fetch(url);

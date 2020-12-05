@@ -22,11 +22,10 @@ namespace p2_3 {
         error: string;
 
     }
-
+    //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-        
-        
+
         let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
         let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
         let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
@@ -41,7 +40,7 @@ namespace p2_3 {
         gespeicherteBilderDiv.appendChild(vorschauMitte);
         gespeicherteBilderDiv.appendChild(vorschauUnten);
     }
-
+    //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
     let buttonMitte: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonMitte");
@@ -50,6 +49,8 @@ namespace p2_3 {
     buttonOben.addEventListener("click", openOben);
     let buttonAll: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonAll");
     buttonAll.addEventListener("click", openAll);
+
+    //wenn diese funktionen aufgerufen werden wird die jeweilige seite geladen 
     function openUnten(): void {
         window.open("AuswahlUnten.html", "_self");
     }
@@ -62,8 +63,11 @@ namespace p2_3 {
     function openAll(): void {
         window.open("Gesamtbild.html", "_self");
     }
-    
+
+
     ladeBilderAusJSON("data.json");
+    //in dieser async funktion wird die beim aufrufen übergebene data json benutzt um die bilder auf ihre jeweilige seite zu bringen
+    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion select aufruft
     async function ladeBilderAusJSON(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
         let json: string = JSON.stringify(await response.json());
@@ -99,7 +103,7 @@ namespace p2_3 {
             }
         }
     }
-
+    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionstorage übergeben 
     function select(_bild: Bild): void {
         if (_bild.typ == keyTypOben) {
             auswahl.oben = _bild;
@@ -113,7 +117,7 @@ namespace p2_3 {
         let auswahlJSONOben: string = JSON.stringify(auswahl);
         sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
-
+// diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
     servercheck();
     async function servercheck(): Promise<void> {
         let query: URLSearchParams = new URLSearchParams(<any>sessionStorage);
