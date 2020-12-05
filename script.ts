@@ -62,13 +62,7 @@ namespace p2_3 {
     function openAll(): void {
         window.open("Gesamtbild.html", "_self");
     }
-  /*   let clear: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clear");
-    clear.addEventListener("click", clearAuswahl);
-    function clearAuswahl(): void {
-        localStorage.clear();
-    } */
-
-
+    
     ladeBilderAusJSON("data.json");
     async function ladeBilderAusJSON(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
