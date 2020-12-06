@@ -5,6 +5,7 @@ var p2_3;
     p2_3.keyTypUnten = 1;
     p2_3.keyTypMitte = 2;
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
+    //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading() {
         let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
@@ -21,6 +22,7 @@ var p2_3;
         gespeicherteBilderDiv.appendChild(vorschauMitte);
         gespeicherteBilderDiv.appendChild(vorschauUnten);
     }
+    //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten = document.getElementById("buttonUnten");
     buttonUnten.addEventListener("click", openUnten);
     let buttonMitte = document.getElementById("buttonMitte");
@@ -29,6 +31,7 @@ var p2_3;
     buttonOben.addEventListener("click", openOben);
     let buttonAll = document.getElementById("buttonAll");
     buttonAll.addEventListener("click", openAll);
+    //wenn diese funktionen aufgerufen werden wird die jeweilige seite geladen 
     function openUnten() {
         window.open("AuswahlUnten.html", "_self");
     }
@@ -42,6 +45,8 @@ var p2_3;
         window.open("Gesamtbild.html", "_self");
     }
     ladeBilderAusJSON("data.json");
+    //in dieser async funktion wird die beim aufrufen übergebene data json benutzt um die bilder auf ihre jeweilige seite zu bringen
+    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion select aufruft
     async function ladeBilderAusJSON(_url) {
         let response = await fetch(_url);
         let json = JSON.stringify(await response.json());
@@ -74,6 +79,7 @@ var p2_3;
             }
         }
     }
+    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionstorage übergeben 
     function select(_bild) {
         if (_bild.typ == p2_3.keyTypOben) {
             p2_3.auswahl.oben = _bild;
@@ -87,6 +93,7 @@ var p2_3;
         let auswahlJSONOben = JSON.stringify(p2_3.auswahl);
         sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
     }
+    // diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
     servercheck();
     async function servercheck() {
         let query = new URLSearchParams(sessionStorage);
