@@ -25,7 +25,7 @@ namespace p2_3 {
     //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-        if (sessionStorage.getItem("" + keyTypOben) != undefined, sessionStorage.getItem("" + keyTypMitte) != undefined, sessionStorage.getItem("" + keyTypUnten) != undefined) {
+    
 
             let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
             let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
@@ -40,7 +40,7 @@ namespace p2_3 {
             gespeicherteBilderDiv.appendChild(vorschauOben);
             gespeicherteBilderDiv.appendChild(vorschauMitte);
             gespeicherteBilderDiv.appendChild(vorschauUnten);
-        }
+        
     }
     //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");

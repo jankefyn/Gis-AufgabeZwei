@@ -8,21 +8,19 @@ var p2_3;
     //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        if (sessionStorage.getItem("" + p2_3.keyTypOben) != undefined, sessionStorage.getItem("" + p2_3.keyTypMitte) != undefined, sessionStorage.getItem("" + p2_3.keyTypUnten) != undefined) {
-            let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
-            let ladeMitte = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypMitte));
-            let ladeUnten = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypUnten));
-            let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
-            let vorschauOben = document.createElement("img");
-            vorschauOben.src = ladeOben.oben.link;
-            let vorschauMitte = document.createElement("img");
-            vorschauMitte.src = ladeMitte.mitte.link;
-            let vorschauUnten = document.createElement("img");
-            vorschauUnten.src = ladeUnten.unten.link;
-            gespeicherteBilderDiv.appendChild(vorschauOben);
-            gespeicherteBilderDiv.appendChild(vorschauMitte);
-            gespeicherteBilderDiv.appendChild(vorschauUnten);
-        }
+        let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
+        let ladeMitte = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypMitte));
+        let ladeUnten = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypUnten));
+        let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
+        let vorschauOben = document.createElement("img");
+        vorschauOben.src = ladeOben.oben.link;
+        let vorschauMitte = document.createElement("img");
+        vorschauMitte.src = ladeMitte.mitte.link;
+        let vorschauUnten = document.createElement("img");
+        vorschauUnten.src = ladeUnten.unten.link;
+        gespeicherteBilderDiv.appendChild(vorschauOben);
+        gespeicherteBilderDiv.appendChild(vorschauMitte);
+        gespeicherteBilderDiv.appendChild(vorschauUnten);
     }
     //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten = document.getElementById("buttonUnten");
