@@ -25,22 +25,26 @@ namespace p2_3 {
     //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
-    
+        let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
 
-            let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
-            let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
-            let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
-            let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
-            let vorschauOben: HTMLImageElement = document.createElement("img");
-            vorschauOben.src = ladeOben.oben.link;
-            let vorschauMitte: HTMLImageElement = document.createElement("img");
-            vorschauMitte.src = ladeMitte.mitte.link;
-            let vorschauUnten: HTMLImageElement = document.createElement("img");
-            vorschauUnten.src = ladeUnten.unten.link;
-            gespeicherteBilderDiv.appendChild(vorschauOben);
-            gespeicherteBilderDiv.appendChild(vorschauMitte);
-            gespeicherteBilderDiv.appendChild(vorschauUnten);
-        
+        if (sessionStorage.getItem("" + keyTypOben) != undefined) {
+        let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
+        let vorschauOben: HTMLImageElement = document.createElement("img");
+        vorschauOben.src = ladeOben.oben.link;
+        gespeicherteBilderDiv.appendChild(vorschauOben);
+        }
+        if (sessionStorage.getItem("" + keyTypMitte) != undefined) {
+        let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
+        let vorschauMitte: HTMLImageElement = document.createElement("img");
+        vorschauMitte.src = ladeMitte.mitte.link;
+        gespeicherteBilderDiv.appendChild(vorschauMitte);
+        }
+        if (sessionStorage.getItem("" + keyTypUnten) != undefined) {
+        let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
+        let vorschauUnten: HTMLImageElement = document.createElement("img");
+        vorschauUnten.src = ladeUnten.unten.link;
+        gespeicherteBilderDiv.appendChild(vorschauUnten);
+        }
     }
     //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonUnten");
