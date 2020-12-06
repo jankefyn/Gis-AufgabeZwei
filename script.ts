@@ -22,28 +22,28 @@ namespace p2_3 {
         error: string;
 
     }
-    //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
+    //bei jedem neu laden wird, wenn der session storage an der zugehörigen stelle nicht undefiniert is, die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
         let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
 
         if (sessionStorage.getItem("" + keyTypOben) != undefined) {
-        let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
-        let vorschauOben: HTMLImageElement = document.createElement("img");
-        vorschauOben.src = ladeOben.oben.link;
-        gespeicherteBilderDiv.appendChild(vorschauOben);
+            let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
+            let vorschauOben: HTMLImageElement = document.createElement("img");
+            vorschauOben.src = ladeOben.oben.link;
+            gespeicherteBilderDiv.appendChild(vorschauOben);
         }
         if (sessionStorage.getItem("" + keyTypMitte) != undefined) {
-        let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
-        let vorschauMitte: HTMLImageElement = document.createElement("img");
-        vorschauMitte.src = ladeMitte.mitte.link;
-        gespeicherteBilderDiv.appendChild(vorschauMitte);
+            let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
+            let vorschauMitte: HTMLImageElement = document.createElement("img");
+            vorschauMitte.src = ladeMitte.mitte.link;
+            gespeicherteBilderDiv.appendChild(vorschauMitte);
         }
         if (sessionStorage.getItem("" + keyTypUnten) != undefined) {
-        let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
-        let vorschauUnten: HTMLImageElement = document.createElement("img");
-        vorschauUnten.src = ladeUnten.unten.link;
-        gespeicherteBilderDiv.appendChild(vorschauUnten);
+            let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
+            let vorschauUnten: HTMLImageElement = document.createElement("img");
+            vorschauUnten.src = ladeUnten.unten.link;
+            gespeicherteBilderDiv.appendChild(vorschauUnten);
         }
     }
     //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
@@ -73,7 +73,7 @@ namespace p2_3 {
 
     ladeBilderAusJSON("data.json");
     //in dieser async funktion wird die beim aufrufen übergebene data json benutzt um die bilder auf ihre jeweilige seite zu bringen
-    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion select aufruft
+    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion auswaehlen aufruft
     async function ladeBilderAusJSON(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
         let json: string = JSON.stringify(await response.json());
@@ -83,7 +83,7 @@ namespace p2_3 {
 
             for (let counter: number = 0; counter < objectJson.oben.length; counter++) {
                 let meinbild: HTMLImageElement = document.createElement("img");
-                meinbild.addEventListener("click", function (): void { select(objectJson.oben[counter]); });
+                meinbild.addEventListener("click", function (): void { auswaehlen(objectJson.oben[counter]); });
                 meinbild.src = objectJson.oben[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
@@ -93,7 +93,7 @@ namespace p2_3 {
 
             for (let counter: number = 0; counter < objectJson.unten.length; counter++) {
                 let meinbild: HTMLImageElement = document.createElement("img");
-                meinbild.addEventListener("click", function (): void { select(objectJson.unten[counter]); });
+                meinbild.addEventListener("click", function (): void { auswaehlen(objectJson.unten[counter]); });
                 meinbild.src = objectJson.unten[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
@@ -103,14 +103,15 @@ namespace p2_3 {
 
             for (let counter: number = 0; counter < objectJson.mitte.length; counter++) {
                 let meinbild: HTMLImageElement = document.createElement("img");
-                meinbild.addEventListener("click", function (): void { select(objectJson.mitte[counter]); });
+
+                meinbild.addEventListener("click", function (): void {auswaehlen(objectJson.mitte[counter]); });
                 meinbild.src = objectJson.mitte[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
         }
     }
     //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionStorage übergeben 
-    function select(_bild: Bild): void {
+    function auswaehlen(_bild: Bild): void {
         if (_bild.typ == keyTypOben) {
             auswahl.oben = _bild;
         }

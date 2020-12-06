@@ -20,6 +20,10 @@ html{
  #bilder img {
         width: 300px;
         height: auto;
+       
+    }
+    #bilder img :active {
+        border: 3px solid green;
     }
 #gespeicherteBilder{
         display: flex;
@@ -28,8 +32,8 @@ html{
         flex-wrap: wrap;
         margin: 40px;
     }
+   
 #gespeicherteBilder img{
-    
         max-width:  200px;
     }
 

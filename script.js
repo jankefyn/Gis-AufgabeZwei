@@ -5,7 +5,7 @@ var p2_3;
     p2_3.keyTypUnten = 1;
     p2_3.keyTypMitte = 2;
     p2_3.auswahl = { oben: undefined, mitte: undefined, unten: undefined };
-    //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
+    //bei jedem neu laden wird, wenn der session storage an der zugehörigen stelle nicht undefiniert is, die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading() {
         let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
@@ -52,7 +52,7 @@ var p2_3;
     }
     ladeBilderAusJSON("data.json");
     //in dieser async funktion wird die beim aufrufen übergebene data json benutzt um die bilder auf ihre jeweilige seite zu bringen
-    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion select aufruft
+    //außerdem bekommen die bilder einen eventlistener der beim mausklick die funktion auswaehlen aufruft
     async function ladeBilderAusJSON(_url) {
         let response = await fetch(_url);
         let json = JSON.stringify(await response.json());
@@ -61,7 +61,7 @@ var p2_3;
             let bilderDiv = document.getElementById("bilder");
             for (let counter = 0; counter < objectJson.oben.length; counter++) {
                 let meinbild = document.createElement("img");
-                meinbild.addEventListener("click", function () { select(objectJson.oben[counter]); });
+                meinbild.addEventListener("click", function () { auswaehlen(objectJson.oben[counter]); });
                 meinbild.src = objectJson.oben[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
@@ -70,7 +70,7 @@ var p2_3;
             let bilderDiv = document.getElementById("bilder");
             for (let counter = 0; counter < objectJson.unten.length; counter++) {
                 let meinbild = document.createElement("img");
-                meinbild.addEventListener("click", function () { select(objectJson.unten[counter]); });
+                meinbild.addEventListener("click", function () { auswaehlen(objectJson.unten[counter]); });
                 meinbild.src = objectJson.unten[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
@@ -79,14 +79,14 @@ var p2_3;
             let bilderDiv = document.getElementById("bilder");
             for (let counter = 0; counter < objectJson.mitte.length; counter++) {
                 let meinbild = document.createElement("img");
-                meinbild.addEventListener("click", function () { select(objectJson.mitte[counter]); });
+                meinbild.addEventListener("click", function () { auswaehlen(objectJson.mitte[counter]); });
                 meinbild.src = objectJson.mitte[counter].link;
                 bilderDiv.appendChild(meinbild);
             }
         }
     }
     //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionStorage übergeben 
-    function select(_bild) {
+    function auswaehlen(_bild) {
         if (_bild.typ == p2_3.keyTypOben) {
             p2_3.auswahl.oben = _bild;
         }
