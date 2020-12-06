@@ -8,19 +8,21 @@ var p2_3;
     //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        let ladeOben = JSON.parse(localStorage.getItem("" + p2_3.keyTypOben));
-        let ladeMitte = JSON.parse(localStorage.getItem("" + p2_3.keyTypMitte));
-        let ladeUnten = JSON.parse(localStorage.getItem("" + p2_3.keyTypUnten));
-        let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
-        let vorschauOben = document.createElement("img");
-        vorschauOben.src = ladeOben.oben.link;
-        let vorschauMitte = document.createElement("img");
-        vorschauMitte.src = ladeMitte.mitte.link;
-        let vorschauUnten = document.createElement("img");
-        vorschauUnten.src = ladeUnten.unten.link;
-        gespeicherteBilderDiv.appendChild(vorschauOben);
-        gespeicherteBilderDiv.appendChild(vorschauMitte);
-        gespeicherteBilderDiv.appendChild(vorschauUnten);
+        if (sessionStorage.getItem("" + p2_3.keyTypOben) != undefined, sessionStorage.getItem("" + p2_3.keyTypMitte) != undefined, sessionStorage.getItem("" + p2_3.keyTypUnten) != undefined) {
+            let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
+            let ladeMitte = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypMitte));
+            let ladeUnten = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypUnten));
+            let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
+            let vorschauOben = document.createElement("img");
+            vorschauOben.src = ladeOben.oben.link;
+            let vorschauMitte = document.createElement("img");
+            vorschauMitte.src = ladeMitte.mitte.link;
+            let vorschauUnten = document.createElement("img");
+            vorschauUnten.src = ladeUnten.unten.link;
+            gespeicherteBilderDiv.appendChild(vorschauOben);
+            gespeicherteBilderDiv.appendChild(vorschauMitte);
+            gespeicherteBilderDiv.appendChild(vorschauUnten);
+        }
     }
     //den im html deklarierten knöpfen wird hier ein eventlistener gegeben der beim klicken die jeweilige function aufruft
     let buttonUnten = document.getElementById("buttonUnten");
@@ -79,7 +81,7 @@ var p2_3;
             }
         }
     }
-    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den localStorage übergeben 
+    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionStorage übergeben 
     function select(_bild) {
         if (_bild.typ == p2_3.keyTypOben) {
             p2_3.auswahl.oben = _bild;
@@ -91,14 +93,14 @@ var p2_3;
             p2_3.auswahl.mitte = _bild;
         }
         let auswahlJSON = JSON.stringify(p2_3.auswahl);
-        localStorage.setItem("" + _bild.typ, auswahlJSON);
+        sessionStorage.setItem("" + _bild.typ, auswahlJSON);
     }
     // diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
     if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "Gesamtbild.html") {
         servercheck();
     }
     async function servercheck() {
-        let query = new URLSearchParams(localStorage);
+        let query = new URLSearchParams(sessionStorage);
         let url = "https://gis-communication.herokuapp.com";
         url = url + "?" + query.toString();
         let serverantwort = await fetch(url);
