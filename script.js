@@ -8,9 +8,9 @@ var p2_3;
     //bei jedem neu laden wird die auswahl in das gespeichertebilderDiv übergeben 
     window.addEventListener("load", finishedloading);
     function finishedloading() {
-        let ladeOben = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypOben));
-        let ladeMitte = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypMitte));
-        let ladeUnten = JSON.parse(sessionStorage.getItem("" + p2_3.keyTypUnten));
+        let ladeOben = JSON.parse(localStorage.getItem("" + p2_3.keyTypOben));
+        let ladeMitte = JSON.parse(localStorage.getItem("" + p2_3.keyTypMitte));
+        let ladeUnten = JSON.parse(localStorage.getItem("" + p2_3.keyTypUnten));
         let gespeicherteBilderDiv = document.getElementById("gespeicherteBilder");
         let vorschauOben = document.createElement("img");
         vorschauOben.src = ladeOben.oben.link;
@@ -79,7 +79,7 @@ var p2_3;
             }
         }
     }
-    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionstorage übergeben 
+    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den localStorage übergeben 
     function select(_bild) {
         if (_bild.typ == p2_3.keyTypOben) {
             p2_3.auswahl.oben = _bild;
@@ -90,13 +90,15 @@ var p2_3;
         if (_bild.typ == p2_3.keyTypMitte) {
             p2_3.auswahl.mitte = _bild;
         }
-        let auswahlJSONOben = JSON.stringify(p2_3.auswahl);
-        sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
+        let auswahlJSON = JSON.stringify(p2_3.auswahl);
+        localStorage.setItem("" + _bild.typ, auswahlJSON);
     }
     // diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
-    servercheck();
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "Gesamtbild.html") {
+        servercheck();
+    }
     async function servercheck() {
-        let query = new URLSearchParams(sessionStorage);
+        let query = new URLSearchParams(localStorage);
         let url = "https://gis-communication.herokuapp.com";
         url = url + "?" + query.toString();
         let serverantwort = await fetch(url);

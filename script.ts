@@ -26,9 +26,9 @@ namespace p2_3 {
     window.addEventListener("load", finishedloading);
     function finishedloading(): void {
 
-        let ladeOben: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypOben));
-        let ladeMitte: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypMitte));
-        let ladeUnten: Auswahl = JSON.parse(sessionStorage.getItem("" + keyTypUnten));
+        let ladeOben: Auswahl = JSON.parse(localStorage.getItem("" + keyTypOben));
+        let ladeMitte: Auswahl = JSON.parse(localStorage.getItem("" + keyTypMitte));
+        let ladeUnten: Auswahl = JSON.parse(localStorage.getItem("" + keyTypUnten));
         let gespeicherteBilderDiv: HTMLElement = document.getElementById("gespeicherteBilder");
         let vorschauOben: HTMLImageElement = document.createElement("img");
         vorschauOben.src = ladeOben.oben.link;
@@ -103,7 +103,7 @@ namespace p2_3 {
             }
         }
     }
-    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den sessionstorage übergeben 
+    //in dieser funktion werden die angecklickten bilder in der auswahl abgespeichert und diese wiederum als string in den localStorage übergeben 
     function select(_bild: Bild): void {
         if (_bild.typ == keyTypOben) {
             auswahl.oben = _bild;
@@ -114,17 +114,20 @@ namespace p2_3 {
         if (_bild.typ == keyTypMitte) {
             auswahl.mitte = _bild;
         }
-        let auswahlJSONOben: string = JSON.stringify(auswahl);
-        sessionStorage.setItem("" + _bild.typ, auswahlJSONOben);
+        let auswahlJSON: string = JSON.stringify(auswahl);
+        localStorage.setItem("" + _bild.typ, auswahlJSON);
     }
-// diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
-    servercheck();
+    // diese funktion erwartet die antwort der seite und gibt die jeweilige antwort an das entscprechende div weiter
+    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "Gesamtbild.html") {
+        servercheck();
+    }
     async function servercheck(): Promise<void> {
-        let query: URLSearchParams = new URLSearchParams(<any>sessionStorage);
+        let query: URLSearchParams = new URLSearchParams(<any>localStorage);
         let url: string = "https://gis-communication.herokuapp.com";
         url = url + "?" + query.toString();
         let serverantwort: Response = await fetch(url);
         let rückmeldung: Serverantwort = await serverantwort.json();
+
 
         if (rückmeldung.error != undefined) {
             console.log(rückmeldung.error);
@@ -136,5 +139,6 @@ namespace p2_3 {
             let messagediv: HTMLElement = document.getElementById("message");
             messagediv.appendChild(document.createTextNode("" + rückmeldung.message));
         }
+
     }
-}
+} 
