@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "@types/node": "^14.14.20"
-  }
+  },
+  "name": "gisaufgabedrei",
+  "version": "1.0.0",
+  "description": "erster server",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node P_3/skript.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jankefyn/Gis-AufgabeZwei.git"
+  },
+  "author": "Fynn Janke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jankefyn/Gis-AufgabeZwei/issues"
+  },
+  "homepage": "https://github.com/jankefyn/Gis-AufgabeZwei#readme"
 }
