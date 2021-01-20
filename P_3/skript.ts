@@ -22,5 +22,6 @@ export namespace P_3_1Server {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _response.write(_request.url);
         _response.end();
+        console.log(Http.IncomingMessage);
     }
 }
