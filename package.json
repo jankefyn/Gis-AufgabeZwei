@@ -8,7 +8,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "node P_3/skript.js"
+    "start": "node P_3/ersterserver.js"
   },
   "repository": {
     "type": "git",

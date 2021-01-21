@@ -1,28 +1,24 @@
-  
-import * as Http from "http";
 
-export namespace P_3_1Server {
-    console.log("Starting server"); // Konsolenausgabe
-    let port: number = Number(process.env.PORT); // Holt aktuellen Port
-    if (!port)
-        port = 8100; // Wenn kein Port, Port = 8100
+namespace P3_1 {
+    let formData: FormData = new FormData(document.forms[0]);
 
-    let server: Http.Server = Http.createServer(); // Erstellt neuen HTTPServer
-    server.addListener("request", handleRequest); // Fuegt Listener hinzu
-    server.addListener("listening", handleListen);
-    server.listen(port); // Horcht auf definierten Port
+    
+    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitHTML");
+    submitbuttonHTML.addEventListener("click", function (): void { submit("HTML"); });
+    let submitJSON: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitJSON");
+    submitJSON.addEventListener("click", function (): void { submit("JSON"); });
+   
 
-    function handleListen(): void {
-        console.log("Listening");
-    }
-
-
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-        console.log("I hear voices!"); // Konsolenausgabe
-        _response.setHeader("content-type", "text/html; charset=utf-8"); // Antwort als HTML
-        _response.setHeader("Access-Control-Allow-Origin", "*");
-        _response.write(_request.url); // Antwort URL ausgeben
-        console.log(_request.url); // URL auf Konsole ausgeben
-        _response.end(); // Antwort abschliessen
+    async function submit( _parameter: string): Promise<void> {
+        let url: string = "http://localhost:8100";
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+        url = url + "?" + query.toString();
+        if (_parameter == "HTML") {
+            url = url + "/html " ; 
+        }
+        let response: Response = await fetch(url);
+        let text: string = await response.text();
+        console.log("Answer:");
+        console.log(text);
     }
 }
