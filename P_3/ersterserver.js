@@ -19,10 +19,11 @@ var P_3_1Server;
     function handleRequest(_request, _response) {
         console.log("I hear voices!");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        console.log(_request.url);
         let q = url.parse(_request.url, true);
         let query = q.query;
+        // console.log(q.pathname );
         if (q.pathname == "/html") {
+            console.log(_request.url);
             _response.setHeader("content-type", "text/html; charset=utf-8");
             for (let key in query) {
                 console.log(key + ":" + query[key]);

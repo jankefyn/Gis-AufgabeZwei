@@ -13,12 +13,19 @@ namespace P3_1 {
         let url: string = "http://localhost:8100";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url = url + "?" + query.toString();
-        if (_parameter == "HTML") {
+        console.log(query.toString());
+        if (_parameter == "HTML") { 
             url = url + "/html " ; 
+        }
+        else {
+            url = url + "/json";
         }
         let response: Response = await fetch(url);
         let text: string = await response.text();
         console.log("Answer:");
         console.log(text);
+        console.log(url);
     }
 }
+//<button type="button" id="submitHTML">submit HTML</button>
+//<button type="button" id="submitJSON">submit JSON</button>

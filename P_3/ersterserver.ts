@@ -23,10 +23,12 @@ export namespace P_3_1Server {
 
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
-        console.log(_request.url);
+        
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let query: ParsedUrlQuery = q.query;
+       // console.log(q.pathname );
         if (q.pathname == "/html") {
+            console.log(_request.url );
             _response.setHeader("content-type", "text/html; charset=utf-8");
             for (let key in query) {
                 console.log(key + ":" + query[key]);
