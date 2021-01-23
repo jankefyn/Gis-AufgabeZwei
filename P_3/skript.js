@@ -11,6 +11,9 @@ var P3_1;
         if (_parameter == "HTML") {
             url = url + "/html";
         }
+        if (_parameter == "login") {
+            url = url + "/login";
+        }
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);

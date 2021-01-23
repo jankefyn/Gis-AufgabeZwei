@@ -80,6 +80,8 @@ export namespace P_3_1Server {
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
 
+
+
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
         let rückgabe: string = <string>daten.fname;
@@ -87,14 +89,17 @@ export namespace P_3_1Server {
         console.log(q.query);
         console.log(q.pathname);
         if (q.pathname == "//html") {
-            console.log("hi");
             // _response.setHeader("content-type", "text/html; charset=utf-8");
             _response.write(await retrieveStudents());
-
+            storeRückgabe(q.query);
+        }
+        if (q.pathname == "//login") {
+            // _response.setHeader("content-type", "text/html; charset=utf-8");
+            console.log("hi");
+            _response.write(await retrieveStudents());
             storeRückgabe(q.query);
         }
 
-        //retrieveStudents();
         _response.end();
     }
 
@@ -102,9 +107,11 @@ export namespace P_3_1Server {
 
         let data: Antwort[] = await students.find().toArray();
         if (data != undefined) {
+
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
-                dataString = dataString + data[counter].fname + data[counter].lname;
+
+                dataString = dataString + counter + "  "  + data[counter].fname + " " + data[counter].lname + "," + "Nutzer" + "     ";
             }
 
             return (dataString);
