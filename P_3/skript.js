@@ -6,12 +6,13 @@ var P3_1;
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
-        let url = "http://localhost:8100";
+        let url = "http://localhost:8100/";
         let query = new URLSearchParams(formData);
         if (_parameter == "HTML") {
             url = url + "/html";
         }
         url = url + "?" + query.toString();
+        console.log(url);
         let response = await fetch(url);
         let text = await response.text();
         serverantwort.innerHTML = text;

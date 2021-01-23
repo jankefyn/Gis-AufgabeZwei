@@ -82,23 +82,36 @@ export namespace P_3_1Server {
 
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
-        //let rückgabe: string = <string>daten.fname;
-        //rückgabe += " " + daten.lname;
-        if (q.pathname == "/html") {
-            //_response.setHeader("content-type", "text/html; charset=utf-8");
+        let rückgabe: string = <string>daten.fname;
+        rückgabe += " " + daten.lname;
+        console.log(q.query);
+        console.log(q.pathname);
+        if (q.pathname == "//html") {
+            console.log("hi");
+            // _response.setHeader("content-type", "text/html; charset=utf-8");
             _response.write(await retrieveStudents());
 
             storeRückgabe(q.query);
         }
-        
+
         //retrieveStudents();
         _response.end();
     }
 
     async function retrieveStudents(): Promise<String> {
+
         let data: Antwort[] = await students.find().toArray();
-        let dataString: string = data[0].fname
-        return (dataString);
+        if (data != undefined) {
+            let dataString: string;
+            for (let counter: number = 0; counter < data.length; counter++) {
+                dataString = dataString + data[counter].fname + data[counter].lname;
+            }
+
+            return (dataString);
+        }
+        else {
+            return ("noch kein Nutzer vorhanden");
+        }
     }
     function storeRückgabe(_rückgabe: Students): void {
         students.insert(_rückgabe);

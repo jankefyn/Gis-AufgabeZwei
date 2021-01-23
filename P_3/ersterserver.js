@@ -53,10 +53,13 @@ var P_3_1Server;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let q = url.parse(_request.url, true);
         let daten = q.query;
-        //let rückgabe: string = <string>daten.fname;
-        //rückgabe += " " + daten.lname;
-        if (q.pathname == "/html") {
-            //_response.setHeader("content-type", "text/html; charset=utf-8");
+        let rückgabe = daten.fname;
+        rückgabe += " " + daten.lname;
+        console.log(q.query);
+        console.log(q.pathname);
+        if (q.pathname == "//html") {
+            console.log("hi");
+            // _response.setHeader("content-type", "text/html; charset=utf-8");
             _response.write(await retrieveStudents());
             storeRückgabe(q.query);
         }
@@ -65,8 +68,16 @@ var P_3_1Server;
     }
     async function retrieveStudents() {
         let data = await students.find().toArray();
-        let dataString = data[0].fname;
-        return (dataString);
+        if (data != undefined) {
+            let dataString;
+            for (let counter = 0; counter < data.length; counter++) {
+                dataString = dataString + data[counter].fname + data[counter].lname;
+            }
+            return (dataString);
+        }
+        else {
+            return ("noch kein Nutzer vorhanden");
+        }
     }
     function storeRückgabe(_rückgabe) {
         students.insert(_rückgabe);
