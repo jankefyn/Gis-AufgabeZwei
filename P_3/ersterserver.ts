@@ -20,26 +20,8 @@ export namespace P_3_1Server {
 
 
     let students: Mongo.Collection;
-    let databaseUrl: string = "mongodb://localhost:27017";
+    let databaseUrl: string = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Test?retryWrites=true&w=majority";
 
-    /*  let startArgs: string[] = process.argv.slice(2);
-      console.log(startArgs);
-      switch (startArgs[0]) {
-          case "local":
-              databaseUrl = "mongodb://localhost:27017";
-              console.log("running local");
-              break;
-          case "remote":
-              //TODO Werte ueberpruefen
-              let userName: string = "user";
-              let pw: string = "onlineUser";
-              databaseUrl = 
-              console.log("running remote");
-              break;
-          default:
-              console.log("no or wrong argument given, running local");
-              databaseUrl = "mongodb://localhost:27017";
-      }*/
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -75,7 +57,7 @@ export namespace P_3_1Server {
 
 
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
-        console.log("I hear voices!");
+
 
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -84,21 +66,19 @@ export namespace P_3_1Server {
 
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
-        let rückgabe: string = <string>daten.fname;
-        rückgabe += " " + daten.lname;
-        console.log(q.query);
-        console.log(q.pathname);
+
         if (q.pathname == "//html") {
-            // _response.setHeader("content-type", "text/html; charset=utf-8");
-            _response.write(await retrieveStudents());
-            storeRückgabe(q.query);
+
+            _response.write(await storeRückgabe(q.query, daten.email));
         }
         if (q.pathname == "//login") {
-            // _response.setHeader("content-type", "text/html; charset=utf-8");
-            console.log("hi");
-            _response.write(await retrieveStudents());
-            storeRückgabe(q.query);
+
+            _response.write(await login(daten.email, daten.password));
         }
+        if (q.pathname == "//showUsers") {
+            _response.write(await retrieveStudents());
+        }
+
 
         _response.end();
     }
@@ -106,22 +86,66 @@ export namespace P_3_1Server {
     async function retrieveStudents(): Promise<String> {
 
         let data: Antwort[] = await students.find().toArray();
-        if (data != undefined) {
+        if (data.length > 0) {
 
-            let dataString: string;
-            for (let counter: number = 0; counter < data.length; counter++) {
-
-                dataString = dataString + counter + "  "  + data[counter].fname + " " + data[counter].lname + "," + "Nutzer" + "     ";
+            let dataString: string = "";
+            for (let counter: number = 0; counter < data.length - 1; counter++) {
+                if (data[counter].fname != undefined) {
+                    dataString = dataString + "  " + data[counter].fname + " " + data[counter].lname + ",";
+                }
             }
-
+            dataString = dataString + "  " + data[data.length].fname + " " + data[data.length].lname;
             return (dataString);
         }
         else {
             return ("noch kein Nutzer vorhanden");
         }
     }
-    function storeRückgabe(_rückgabe: Students): void {
-        students.insert(_rückgabe);
+    async function login(email: string | string[], password: string | string[]): Promise<String> {
+
+        let data: Antwort[] = await students.find().toArray();
+        if (data.length > 0) {
+
+            let dataString: string;
+            for (let counter: number = 0; counter < data.length; counter++) {
+                if (data[counter].email == email) {
+                    if (data[counter].password == password) {
+                        dataString = "angemeldet";
+                    }
+                    else {
+                        dataString = " falsches Passwort";
+                    }
+                }
+                else {
+
+                    dataString = "falsche Email";
+                }
+            }
+
+            return (dataString);
+        }
+        else return "Anmeldedaten nicht gefunden";
+
+    }
+    async function storeRückgabe(_rückgabe: Students, email: string | string[]): Promise<string> {
+        let data: Antwort[] = await students.find().toArray();
+
+        if (data.length > 0) {
+            for (let counter: number = 0; counter < data.length; counter++) {
+                if (data[counter].email == email) {
+
+                    return "Ein Konto mit dieser email adresse besteht bereits";
+
+                }
+                else {
+                    students.insertOne(_rückgabe);
+                    return ("Nutzer erfolgreich registriert");
+                }
+            }
+        }
+
+        students.insertOne(_rückgabe);
+        return "Nutzer erfolgreich registriert";
     }
 }
 

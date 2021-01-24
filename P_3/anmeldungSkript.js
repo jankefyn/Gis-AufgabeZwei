@@ -1,15 +1,15 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
-    let submitbuttonHTML = document.getElementById("submitHTML");
-    submitbuttonHTML.addEventListener("click", function () { submit("HTML"); });
+    let loginButton = document.getElementById("login");
+    loginButton.addEventListener("click", function () { submit("login"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
         let url = "https://gisaufgabedrei.herokuapp.com/";
         let query = new URLSearchParams(formData);
-        if (_parameter == "HTML") {
-            url = url + "/html";
+        if (_parameter == "login") {
+            url = url + "/login";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
@@ -17,4 +17,4 @@ var P3_1;
         serverantwort.innerHTML = text;
     }
 })(P3_1 || (P3_1 = {}));
-//# sourceMappingURL=skript.js.map
+//# sourceMappingURL=anmeldungSkript.js.map

@@ -1,8 +1,8 @@
 namespace P3_1 {
 
 
-    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitHTML");
-    submitbuttonHTML.addEventListener("click", function (): void { submit("HTML"); });
+    let anzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showUsers");
+    anzeigeButton.addEventListener("click", function (): void { submit("showUsers"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -11,8 +11,8 @@ namespace P3_1 {
         let url: string = "https://gisaufgabedrei.herokuapp.com/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
-        if (_parameter == "HTML") {
-            url = url + "/html";
+        if (_parameter == "showUsers") {
+            url = url + "/showUsers";
         }
 
 
