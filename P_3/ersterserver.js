@@ -54,7 +54,7 @@ var P_3_1Server;
                     dataString = dataString + "  " + data[counter].fname + " " + data[counter].lname + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length].fname + " " + data[data.length].lname;
+            dataString = dataString + "  " + data[data.length - 1].fname + " " + data[data.length - 1].lname;
             return (dataString);
         }
         else {
